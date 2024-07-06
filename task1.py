@@ -29,4 +29,4 @@ while playing:
     if not play_again =='yes':
         playing = False
 
-print("Thanks for playing..."
+print("Thanks for playing...")

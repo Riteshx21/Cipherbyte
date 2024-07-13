@@ -1,0 +1,21 @@
+import sounddevice as sd
+import soundfile as sf
+from tkinter import *
+import threading
+
+def Voice_recorder():
+    fs = 48000
+    dur = 10
+    myrec = sd.rec(int(dur * fs), samplerate=fs, channels=2)
+    sd.wait()
+    sf.write("My_Audio_file.flac", myrec, fs)
+
+def start_recording():
+    # Use threading to prevent the GUI from freezing
+    threading.Thread(target=Voice_recorder).start()
+
+a = Tk()
+Label(a, text="Voice Recorder").grid(row=0, sticky=W, rowspan=5)
+b = Button(a, text="Start", command=start_recording)
+b.grid(row=0, column=2, columnspan=2, rowspan=2, padx=5, pady=5)
+a.mainloop()
